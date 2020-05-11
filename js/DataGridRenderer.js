@@ -187,8 +187,57 @@ var DataGridRenderer = {
     
     return outputText;
   },
+
   
-  
+  //---------------------------------------
+  // JSON Array of Columns
+  //---------------------------------------
+  jsonArrayColsExtended: function (dataGrid, headerNames, headerTypes, indent, newLine) {
+    //inits...
+    var commentLine = "//";
+    var commentLineEnd = "";
+    var outputText = "";
+    var numRows = dataGrid.length;
+    var numColumns = headerNames.length;
+    
+    //begin render loop
+    outputText += "{"+newLine;
+    for (var i=0; i < numColumns; i++) {
+      outputText += indent+'"'+headerNames[i]+'":[';
+      for (var j=0; j < numRows; j++) {
+        if ((headerTypes[i] == "int")||(headerTypes[i] == "float")) {
+          outputText += dataGrid[j][i] || 0;
+        } else {
+          outputText += '"'+(dataGrid[j][i] || "")+'"' ;
+        }
+        if (j < (numRows-1)) {outputText+=","};
+      };
+      outputText += "]";
+      if (i < (numColumns-1)) {outputText += ","+newLine};
+    };
+    outputText += newLine+"}";
+    
+    const parse = (data) => {
+      if (typeof data === 'string') {
+        data = JSON.parse(data);
+      }
+      const result = [];
+      
+      Object.keys(data).forEach((name) => {
+        result.push(data[name].filter((item) => item.length > 0));
+      });
+      
+      // console.log(result);
+      
+      // console.log(JSON.stringify(result));
+      return JSON.stringify(result);
+    }
+    
+    outputText = parse(outputText);
+    
+    return outputText;
+  },
+
   //---------------------------------------
   // JSON Array of Rows
   //---------------------------------------
@@ -216,7 +265,6 @@ var DataGridRenderer = {
       if (i < (numRows-1)) {outputText += ","+newLine};
     };
     outputText += newLine+"]";
-    
     
     return outputText;
   },

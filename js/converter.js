@@ -22,6 +22,7 @@ function DataConverter(nodeId) {
                                 {"text":"HTML",                   "id":"html",             "notes":""},
                                 {"text":"JSON - Properties",      "id":"json",             "notes":""},
                                 {"text":"JSON - Column Arrays",   "id":"jsonArrayCols",    "notes":""},
+                                {"text":"JSON - Column Arrays extedned",   "id":"jsonArrayColsExtended",    "notes":""},
                                 {"text":"JSON - Row Arrays",      "id":"jsonArrayRows",    "notes":""},
                                 {"text":"JSON - Dictionary",      "id":"jsonDict",         "notes":""},
                                 {"text":"MySQL",                  "id":"mysql",            "notes":""},
@@ -31,7 +32,7 @@ function DataConverter(nodeId) {
                                 {"text":"XML - Properties",       "id":"xmlProperties",    "notes":""},
                                 {"text":"XML - Nodes",            "id":"xml",              "notes":""},
                                 {"text":"XML - Illustrator",      "id":"xmlIllustrator",   "notes":""}];
-  this.outputDataType         = "json";
+  this.outputDataType         = "jsonArrayColsExtended";
 
   this.columnDelimiter        = "\t";
   this.rowDelimiter           = "\n";
